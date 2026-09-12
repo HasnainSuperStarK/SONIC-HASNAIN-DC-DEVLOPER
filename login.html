@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #05070d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,255,170,0.15), transparent 65%);
+            animation: moveGlow 7s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveGlow {
+            from {
+                transform: translate(-200px, -100px);
+            }
+            to {
+                transform: translate(200px, 100px);
+            }
+        }
+
+        /* Card */
+        .container {
+            position: relative;
+            width: 390px;
+            max-width: 92%;
+            padding: 35px;
+            background: rgba(10, 15, 25, 0.88);
+            border: 1px solid rgba(0,255,170,0.35);
+            border-radius: 20px;
+            box-shadow:
+                0 0 30px rgba(0,255,170,0.12),
+                inset 0 0 25px rgba(0,255,170,0.03);
+            backdrop-filter: blur(15px);
+            animation: cardIn 0.8s ease;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            border: 2px solid #00ffaa;
+            box-shadow: 0 0 20px rgba(0,255,170,0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                box-shadow: 0 0 35px rgba(0,255,170,0.7);
+            }
+        }
+
+        .logo h1 {
+            margin-top: 14px;
+            font-size: 25px;
+            letter-spacing: 3px;
+        }
+
+        .logo p {
+            color: #829097;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #080c13;
+            padding: 5px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            width: 50%;
+            padding: 11px;
+            border: none;
+            background: transparent;
+            color: #777;
+            cursor: pointer;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            background: #00ffaa;
+            color: #03100b;
+            box-shadow: 0 0 15px rgba(0,255,170,0.25);
+        }
+
+        /* Form */
+        .form {
+            display: none;
+            animation: fade 0.4s ease;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .input-box {
+            margin-bottom: 17px;
+        }
+
+        .input-box label {
+            display: block;
+            font-size: 12px;
+            color: #9aa6aa;
+            margin-bottom: 7px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 9px;
+            border: 1px solid #202c31;
+            outline: none;
+            background: #070b11;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #00ffaa;
+            box-shadow: 0 0 12px rgba(0,255,170,0.15);
+        }
+
+        .password-area {
+            position: relative;
+        }
+
+        .password-area input {
+            padding-right: 55px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #00ffaa;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: #889398;
+        }
+
+        .options a {
+            color: #00ffaa;
+            text-decoration: none;
+        }
+
+        /* Button */
+        .main-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #00ffaa;
+            color: #03100b;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0,255,170,0.35);
+        }
+
+        .status {
+            text-align: center;
+            color: #68767b;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+
+        .status span {
+            color: #00ffaa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            color: #4f5c60;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <div class="logo-icon">🔐</div>
+            <h1>SECURE ACCESS</h1>
+            <p>Welcome to your private workspace</p>
+        </div>
+
+        <!-- Login / Signup Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showForm('login', this)">
+                LOGIN
+            </button>
+
+            <button class="tab" onclick="showForm('signup', this)">
+                SIGN UP
+            </button>
+        </div>
+
+        <!-- LOGIN -->
+        <form id="login" class="form active" onsubmit="demoLogin(event)">
+
+            <div class="input-box">
+                <label>EMAIL ADDRESS</label>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="input-box">
+                <label>PASSWORD</label>
+
+                <div class="password-area">
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('loginPassword', this)"
+                    >
+                        SHOW
+                    </button>
+                </div>
+            </div>
+
+            <div class="options">
+                <label>
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="main-btn" type="submit">
+                ACCESS ACCOUNT
+            </button>
+
+            <div class="status">
+                ● System status: <span>ONLINE</span>
+            </div>
+
+        </form>
+
+        <!-- SIGN UP -->
+        <form id="signup" class="form" onsubmit="demoSignup(event)">
+
+            <div class="input-box">
+                <label>FULL NAME</label>
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                >
+            </div>
+
+            <div class="input-box">
+                <label>EMAIL ADDRESS</label>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="input-box">
+                <label>CREATE PASSWORD</label>
+
+                <div class="password-area">
+                    <input
+                        id="signupPassword"
+                        type="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('signupPassword', this)"
+                    >
+                        SHOW
+                    </button>
+                </div>
+            </div>
+
+            <button class="main-btn" type="submit">
+                CREATE ACCOUNT
+            </button>
+
+            <div class="status">
+                ● Encryption: <span>READY</span>
+            </div>
+
+        </form>
+
+        <div class="footer">
+            SECURE • PRIVATE • MODERN
+        </div>
+
+    </div>
+
+    <script>
+
+        function showForm(formName, button) {
+
+            document.querySelectorAll(".form").forEach(form => {
+                form.classList.remove("active");
+            });
+
+            document.querySelectorAll(".tab").forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+            document.getElementById(formName).classList.add("active");
+            button.classList.add("active");
+        }
+
+
+        function togglePassword(id, button) {
+
+            const input = document.getElementById(id);
+
+            if (input.type === "password") {
+                input.type = "text";
+                button.textContent = "HIDE";
+            } else {
+                input.type = "password";
+                button.textContent = "SHOW";
+            }
+        }
+
+
+        function demoLogin(event) {
+
+            event.preventDefault();
+
+            alert("Demo login successful! Backend authentication is not connected yet.");
+        }
+
+
+        function demoSignup(event) {
+
+            event.preventDefault();
+
+            alert("Demo account created! Connect a backend/database for real accounts.");
+        }
+
+    </script>
+
+</body>
+</html>

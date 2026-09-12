@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Course Website</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: white;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #111c2e;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-buttons button {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-buttons button:hover {
+    background: #334155;
+}
+
+/* ================= PAGES ================= */
+
+.page {
+    display: none;
+}
+
+.active-page {
+    display: block;
+}
+
+/* ================= HOME ================= */
+
+.home {
+    padding: 30px 15px;
+}
+
+.home h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.welcome {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+/* ================= SEARCH ================= */
+
+.search {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.search input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ================= COURSES ================= */
+
+#courses {
+    max-width: 800px;
+    margin: 25px auto;
+}
+
+.course {
+    background: #1e293b;
+    margin-bottom: 12px;
+    padding: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.course:hover {
+    transform: translateY(-2px);
+    background: #26364d;
+}
+
+.course h2 {
+    margin: 0 0 8px;
+}
+
+.course p {
+    margin: 0;
+    color: #cbd5e1;
+}
+
+#noResult {
+    text-align: center;
+    display: none;
+    margin-top: 30px;
+}
+
+/* ================= SETTINGS ================= */
+
+.section {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.section h1 {
+    text-align: center;
+}
+
+.settings-box {
+    background: #111c2e;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.setting-option {
+    background: #1e293b;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.setting-option:hover {
+    background: #2b3b52;
+    transform: translateX(3px);
+}
+
+.option-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.option-description {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card {
+    background: #111c2e;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    background: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 38px;
+}
+
+.profile-name {
+    font-size: 27px;
+    margin: 15px 0 5px;
+}
+
+.status {
+    color: #00ff88;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.info-box {
+    background: #1e293b;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+.info-box h2 {
+    margin-top: 0;
+}
+
+.congratulations {
+    background: #123c2b;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+.congratulations h2 {
+    margin-top: 0;
+}
+
+.main-button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.back-button {
+    border: none;
+    background: #334155;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ================= COMPLETED COURSES ================= */
+
+.completed-list {
+    background: #111c2e;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.completed-item {
+    background: #1e293b;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.completed-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ================= HISTORY ================= */
+
+.history-box {
+    background: #111c2e;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.history-item {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.history-time {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.delete-button {
+    width: 100%;
+    background: #b91c1c;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    padding: 20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search {
+        flex-direction: column;
+    }
+
+    .search button {
+        width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
+
+<div class="navbar">
+
+    <div class="logo">
+        📚 My Courses
+    </div>
+
+    <div class="nav-buttons">
+
+        <button onclick="showPage('homePage')">
+            🏠 Home
+        </button>
+
+        <button onclick="showPage('settingsPage')">
+            ⚙️ Settings
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- HOME PAGE -->
+<!-- ================================================= -->
+
+<div id="homePage" class="page active-page">
+
+    <div class="home">
+
+        <h1>
+            📚 My Course Website
+        </h1>
+
+        <p class="welcome">
+            Welcome, <span id="homeName">Anas</span> 👋
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search any course..."
+                oninput="searchCourses()"
+            >
+
+            <button onclick="searchCourses()">
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- COURSES -->
+
+        <div id="courses">
+
+            <div class="course" onclick="openCourse('Daraz Course')">
+                <h2>🛒 Daraz Course</h2>
+                <p>Daraz e-commerce learning course</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Amazon Course')">
+                <h2>📦 Amazon Course</h2>
+                <p>Amazon e-commerce learning course</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Facebook Marketing Course')">
+                <h2>📱 Facebook Marketing Course</h2>
+                <p>Facebook marketing basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Instagram Marketing Course')">
+                <h2>📸 Instagram Marketing Course</h2>
+                <p>Instagram marketing basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Web Development Course')">
+                <h2>💻 Web Development Course</h2>
+                <p>HTML, CSS and JavaScript basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Graphic Design Course')">
+                <h2>🎨 Graphic Design Course</h2>
+                <p>Graphic design fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Content Writing Course')">
+                <h2>✍️ Content Writing Course</h2>
+                <p>Content writing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Digital Marketing Course')">
+                <h2>📢 Digital Marketing Course</h2>
+                <p>Digital marketing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('SEO Course')">
+                <h2>🔎 SEO Course</h2>
+                <p>Search engine optimization basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Video Editing Course')">
+                <h2>🎬 Video Editing Course</h2>
+                <p>Video editing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Photography Course')">
+                <h2>📷 Photography Course</h2>
+                <p>Photography basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Computer Basics Course')">
+                <h2>🖥️ Computer Basics Course</h2>
+                <p>Basic computer skills</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Typing Course')">
+                <h2>⌨️ Typing Course</h2>
+                <p>Typing practice and fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Excel Course')">
+                <h2>📊 Excel Course</h2>
+                <p>Microsoft Excel basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('MS Word Course')">
+                <h2>📄 MS Word Course</h2>
+                <p>Microsoft Word basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('PowerPoint Course')">
+                <h2>📽️ PowerPoint Course</h2>
+                <p>Presentation design basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Freelancing Course')">
+                <h2>💰 Freelancing Course</h2>
+                <p>Freelancing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('E-Commerce Course')">
+                <h2>🏪 E-Commerce Course</h2>
+                <p>Online business fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Business Basics Course')">
+                <h2>💼 Business Basics Course</h2>
+                <p>Business fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Business Management Course')">
+                <h2>📈 Business Management Course</h2>
+                <p>Business management basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Personal Finance Course')">
+                <h2>💵 Personal Finance Course</h2>
+                <p>Money management basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('English Speaking Course')">
+                <h2>🗣️ English Speaking Course</h2>
+                <p>English speaking practice</p>
+            </div>
+
+            <div class="course" onclick="openCourse('English Grammar Course')">
+                <h2>📝 English Grammar Course</h2>
+                <p>English grammar fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('AI Basics Course')">
+                <h2>🤖 AI Basics Course</h2>
+                <p>Artificial intelligence fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Cyber Security Course')">
+                <h2>🔐 Cyber Security Course</h2>
+                <p>Cyber security awareness and fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Ethical Hacking Course')">
+                <h2>🛡️ Ethical Hacking Course</h2>
+                <p>Authorized security testing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Mobile Security Course')">
+                <h2>📱 Mobile Security Course</h2>
+                <p>Mobile security awareness</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Cloud Computing Course')">
+                <h2>☁️ Cloud Computing Course</h2>
+                <p>Cloud computing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Programming Course')">
+                <h2>🧠 Programming Course</h2>
+                <p>Programming fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Python Course')">
+                <h2>🐍 Python Course</h2>
+                <p>Python programming basics</p>
+            </div>
+
+        </div>
+
+
+        <div id="noResult">
+            ❌ Course nahi mila.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- SETTINGS PAGE -->
+<!-- ================================================= -->
+
+<div id="settingsPage" class="page">
+
+    <div class="section">
+
+        <h1>⚙️ Settings</h1>
+
+        <div class="settings-box">
+
+            <div
+                class="setting-option"
+                onclick="showPage('homePage')"
+            >
+
+                <div class="option-title">
+                    🏠 Home
+                </div>
+
+                <div class="option-description">
+                    Wapas homepage par jao
+                </div>
+
+            </div>
+
+
+            <div
+                class="setting-option"
+                onclick="showHistory()"
+            >
+
+                <div class="option-title">
+                    🕘 History
+                </div>
+
+                <div class="option-description">
+                    Tumne kaun se courses dekhe
+                </div>
+
+            </div>
+
+
+            <div
+                class="setting-option"
+                onclick="showProfile()"
+            >
+
+                <div class="option-title">
+                    👤 Profile
+                </div>
+
+                <div class="option-description">
+                    Apni profile aur completed courses dekho
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- HISTORY PAGE -->
+<!-- ================================================= -->
+
+<div id="historyPage" class="page">
+
+    <div class="section">
+
+        <h1>🕘 My History</h1>
+
+        <div class="history-box">
+
+            <div id="historyList">
+                <!-- History JavaScript se ayegi -->
+            </div>
+
+            <button
+                class="delete-button"
+                onclick="deleteHistory()"
+            >
+                🗑️ Delete History
+            </button>
+
+            <button
+                class="back-button"
+                onclick="showPage('settingsPage')"
+            >
+                ← Back to Settings
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- PROFILE PAGE -->
+<!-- ================================================= -->
+
+<div id="profilePage" class="page">
+
+    <div class="section">
+
+        <div class="profile-card">
+
+            <div class="avatar">
+                👤
+            </div>
+
+
+            <div
+                id="profileName"
+                class="profile-name"
+            >
+                Anas
+            </div>
+
+
+            <div class="status">
+                🟢 Account Status: ACTIVE
+            </div>
+
+
+            <div class="status">
+                🟢 Online
+            </div>
+
+
+            <!-- CONGRATULATIONS -->
+
+            <div class="congratulations">
+
+                <h2>
+                    🎉 Congratulations!
+                </h2>
+
+                <p>
+                    Tumne successfully
+                    <b id="completedCount">3</b>
+                    courses complete kiye hain.
+                </p>
+
+            </div>
+
+
+            <!-- COMPLETED COURSES -->
+
+            <div class="info-box">
+
+                <h2>
+                    📚 Completed Courses
+                </h2>
+
+                <p>
+                    Neeche click karke apne completed
+                    courses dekho.
+                </p>
+
+                <button
+                    class="main-button"
+                    onclick="showCompletedCourses()"
+                >
+                    📚 View Completed Courses
+                </button>
+
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="showPage('settingsPage')"
+            >
+                ← Back to Settings
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- COMPLETED COURSES PAGE -->
+<!-- ================================================= -->
+
+<div id="completedPage" class="page">
+
+    <div class="section">
+
+        <h1>
+            📚 Completed Courses
+        </h1>
+
+        <div class="completed-list">
+
+            <div class="completed-item">
+                ✅ 🛒 Daraz Course
+            </div>
+
+            <div class="completed-item">
+                ✅ 📦 Amazon Course
+            </div>
+
+            <div class="completed-item">
+                ✅ 📱 Facebook Marketing Course
+            </div>
+
+        </div>
+
+
+        <button
+            class="back-button"
+            onclick="showProfile()"
+        >
+            ← Back to Profile
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
+
+/* ================= USER NAME ================= */
+
+let userName =
+    localStorage.getItem("userName") || "Anas";
+
+document.getElementById("homeName").innerText =
+    userName;
+
+document.getElementById("profileName").innerText =
+    userName;
+
+
+/* ================= PAGE SYSTEM ================= */
+
+function showPage(pageId) {
+
+    let pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+
+        page.classList.remove("active-page");
+
+    });
+
+    document
+        .getElementById(pageId)
+        .classList.add("active-page");
+
+    window.scrollTo(0, 0);
+}
+
+
+/* ================= PROFILE ================= */
+
+function showProfile() {
+
+    document.getElementById("profileName").innerText =
+        localStorage.getItem("userName") || "Anas";
+
+    showPage("profilePage");
+}
+
+
+/* ================= COMPLETED COURSES ================= */
+
+function showCompletedCourses() {
+
+    showPage("completedPage");
+
+}
+
+
+/* ================= COURSE OPEN ================= */
+
+function openCourse(courseName) {
+
+    /*
+       Course ko history mein save karo
+    */
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("courseHistory")
+        ) || [];
+
+
+    let time =
+        new Date().toLocaleString();
+
+
+    history.unshift({
+
+        name: courseName,
+
+        time: time
+
+    });
+
+
+    /*
+       Same course ki history
+       bahut zyada duplicate na ho
+    */
+
+    if (history.length > 20) {
+
+        history = history.slice(0, 20);
+
+    }
+
+
+    localStorage.setItem(
+        "courseHistory",
+        JSON.stringify(history)
+    );
+
+
+    alert(
+        "You opened: " + courseName
+    );
+}
+
+
+/* ================= SHOW HISTORY ================= */
+
+function showHistory() {
+
+    showPage("historyPage");
+
+    loadHistory();
+
+}
+
+
+/* ================= LOAD HISTORY ================= */
+
+function loadHistory() {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("courseHistory")
+        ) || [];
+
+
+    let list =
+        document.getElementById("historyList");
+
+
+    list.innerHTML = "";
+
+
+    if (history.length === 0) {
+
+        list.innerHTML =
+            '<div class="empty">🕘 History empty hai.</div>';
+
+        return;
+
+    }
+
+
+    history.forEach(function(item) {
+
+        let div =
+            document.createElement("div");
+
+        div.className =
+            "history-item";
+
+
+        div.innerHTML =
+
+            "👁️ <b>" +
+            item.name +
+            "</b>" +
+
+            '<div class="history-time">' +
+            item.time +
+            "</div>";
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* ================= DELETE HISTORY ================= */
+
+function deleteHistory() {
+
+    let confirmDelete =
+        confirm(
+            "Kya tum puri history delete karna chahte ho?"
+        );
+
+
+    if (confirmDelete) {
+
+        localStorage.removeItem("courseHistory");
+
+        loadHistory();
+
+    }
+
+}
+
+
+/* ================= COURSE SEARCH ================= */
+
+function searchCourses() {
+
+    let input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let container =
+        document.getElementById("courses");
+
+
+    let courses =
+        Array.from(
+            document.querySelectorAll(".course")
+        );
+
+
+    let foundCourses = [];
+
+    let hiddenCourses = [];
+
+
+    courses.forEach(function(course) {
+
+        let text =
+            course.innerText.toLowerCase();
+
+
+        if (
+            input === "" ||
+            text.includes(input)
+        ) {
+
+            foundCourses.push(course);
+
+        } else {
+
+            hiddenCourses.push(course);
+
+        }
+
+    });
+
+
+    /*
+       Matching courses upar
+    */
+
+    foundCourses.forEach(function(course) {
+
+        course.style.display = "block";
+
+        container.appendChild(course);
+
+    });
+
+
+    /*
+       Baqi courses hide
+    */
+
+    hiddenCourses.forEach(function(course) {
+
+        course.style.display = "none";
+
+    });
+
+
+    /*
+       No result
+    */
+
+    document.getElementById("noResult").style.display =
+
+        foundCourses.length === 0
+        ? "block"
+        : "none";
+
+}
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Course Website</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: white;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #111c2e;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-buttons button {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-buttons button:hover {
+    background: #334155;
+}
+
+/* ================= PAGES ================= */
+
+.page {
+    display: none;
+}
+
+.active-page {
+    display: block;
+}
+
+/* ================= HOME ================= */
+
+.home {
+    padding: 30px 15px;
+}
+
+.home h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.welcome {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+/* ================= SEARCH ================= */
+
+.search {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.search input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ================= COURSES ================= */
+
+#courses {
+    max-width: 800px;
+    margin: 25px auto;
+}
+
+.course {
+    background: #1e293b;
+    margin-bottom: 12px;
+    padding: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.course:hover {
+    transform: translateY(-2px);
+    background: #26364d;
+}
+
+.course h2 {
+    margin: 0 0 8px;
+}
+
+.course p {
+    margin: 0;
+    color: #cbd5e1;
+}
+
+#noResult {
+    text-align: center;
+    display: none;
+    margin-top: 30px;
+}
+
+/* ================= SETTINGS ================= */
+
+.section {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.section h1 {
+    text-align: center;
+}
+
+.settings-box {
+    background: #111c2e;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.setting-option {
+    background: #1e293b;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.setting-option:hover {
+    background: #2b3b52;
+    transform: translateX(3px);
+}
+
+.option-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.option-description {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card {
+    background: #111c2e;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    background: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 38px;
+}
+
+.profile-name {
+    font-size: 27px;
+    margin: 15px 0 5px;
+}
+
+.status {
+    color: #00ff88;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.info-box {
+    background: #1e293b;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+.info-box h2 {
+    margin-top: 0;
+}
+
+.congratulations {
+    background: #123c2b;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+.congratulations h2 {
+    margin-top: 0;
+}
+
+.main-button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.back-button {
+    border: none;
+    background: #334155;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ================= COMPLETED COURSES ================= */
+
+.completed-list {
+    background: #111c2e;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.completed-item {
+    background: #1e293b;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.completed-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ================= HISTORY ================= */
+
+.history-box {
+    background: #111c2e;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.history-item {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.history-time {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.delete-button {
+    width: 100%;
+    background: #b91c1c;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    padding: 20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search {
+        flex-direction: column;
+    }
+
+    .search button {
+        width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- NAVBAR -->
+<!-- ================================================= -->
+
+<div class="navbar">
+
+    <div class="logo">
+        📚 My Courses
+    </div>
+
+    <div class="nav-buttons">
+
+        <button onclick="showPage('homePage')">
+            🏠 Home
+        </button>
+
+        <button onclick="showPage('settingsPage')">
+            ⚙️ Settings
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- HOME PAGE -->
+<!-- ================================================= -->
+
+<div id="homePage" class="page active-page">
+
+    <div class="home">
+
+        <h1>
+            📚 My Course Website
+        </h1>
+
+        <p class="welcome">
+            Welcome, <span id="homeName">Anas</span> 👋
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search any course..."
+                oninput="searchCourses()"
+            >
+
+            <button onclick="searchCourses()">
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- COURSES -->
+
+        <div id="courses">
+
+            <div class="course" onclick="openCourse('Daraz Course')">
+                <h2>🛒 Daraz Course</h2>
+                <p>Daraz e-commerce learning course</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Amazon Course')">
+                <h2>📦 Amazon Course</h2>
+                <p>Amazon e-commerce learning course</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Facebook Marketing Course')">
+                <h2>📱 Facebook Marketing Course</h2>
+                <p>Facebook marketing basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Instagram Marketing Course')">
+                <h2>📸 Instagram Marketing Course</h2>
+                <p>Instagram marketing basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Web Development Course')">
+                <h2>💻 Web Development Course</h2>
+                <p>HTML, CSS and JavaScript basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Graphic Design Course')">
+                <h2>🎨 Graphic Design Course</h2>
+                <p>Graphic design fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Content Writing Course')">
+                <h2>✍️ Content Writing Course</h2>
+                <p>Content writing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Digital Marketing Course')">
+                <h2>📢 Digital Marketing Course</h2>
+                <p>Digital marketing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('SEO Course')">
+                <h2>🔎 SEO Course</h2>
+                <p>Search engine optimization basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Video Editing Course')">
+                <h2>🎬 Video Editing Course</h2>
+                <p>Video editing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Photography Course')">
+                <h2>📷 Photography Course</h2>
+                <p>Photography basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Computer Basics Course')">
+                <h2>🖥️ Computer Basics Course</h2>
+                <p>Basic computer skills</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Typing Course')">
+                <h2>⌨️ Typing Course</h2>
+                <p>Typing practice and fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Excel Course')">
+                <h2>📊 Excel Course</h2>
+                <p>Microsoft Excel basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('MS Word Course')">
+                <h2>📄 MS Word Course</h2>
+                <p>Microsoft Word basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('PowerPoint Course')">
+                <h2>📽️ PowerPoint Course</h2>
+                <p>Presentation design basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Freelancing Course')">
+                <h2>💰 Freelancing Course</h2>
+                <p>Freelancing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('E-Commerce Course')">
+                <h2>🏪 E-Commerce Course</h2>
+                <p>Online business fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Business Basics Course')">
+                <h2>💼 Business Basics Course</h2>
+                <p>Business fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Business Management Course')">
+                <h2>📈 Business Management Course</h2>
+                <p>Business management basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Personal Finance Course')">
+                <h2>💵 Personal Finance Course</h2>
+                <p>Money management basics</p>
+            </div>
+
+            <div class="course" onclick="openCourse('English Speaking Course')">
+                <h2>🗣️ English Speaking Course</h2>
+                <p>English speaking practice</p>
+            </div>
+
+            <div class="course" onclick="openCourse('English Grammar Course')">
+                <h2>📝 English Grammar Course</h2>
+                <p>English grammar fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('AI Basics Course')">
+                <h2>🤖 AI Basics Course</h2>
+                <p>Artificial intelligence fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Cyber Security Course')">
+                <h2>🔐 Cyber Security Course</h2>
+                <p>Cyber security awareness and fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Ethical Hacking Course')">
+                <h2>🛡️ Ethical Hacking Course</h2>
+                <p>Authorized security testing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Mobile Security Course')">
+                <h2>📱 Mobile Security Course</h2>
+                <p>Mobile security awareness</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Cloud Computing Course')">
+                <h2>☁️ Cloud Computing Course</h2>
+                <p>Cloud computing fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Programming Course')">
+                <h2>🧠 Programming Course</h2>
+                <p>Programming fundamentals</p>
+            </div>
+
+            <div class="course" onclick="openCourse('Python Course')">
+                <h2>🐍 Python Course</h2>
+                <p>Python programming basics</p>
+            </div>
+
+        </div>
+
+
+        <div id="noResult">
+            ❌ Course nahi mila.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- SETTINGS PAGE -->
+<!-- ================================================= -->
+
+<div id="settingsPage" class="page">
+
+    <div class="section">
+
+        <h1>⚙️ Settings</h1>
+
+        <div class="settings-box">
+
+            <div
+                class="setting-option"
+                onclick="showPage('homePage')"
+            >
+
+                <div class="option-title">
+                    🏠 Home
+                </div>
+
+                <div class="option-description">
+                    Wapas homepage par jao
+                </div>
+
+            </div>
+
+
+            <div
+                class="setting-option"
+                onclick="showHistory()"
+            >
+
+                <div class="option-title">
+                    🕘 History
+                </div>
+
+                <div class="option-description">
+                    Tumne kaun se courses dekhe
+                </div>
+
+            </div>
+
+
+            <div
+                class="setting-option"
+                onclick="showProfile()"
+            >
+
+                <div class="option-title">
+                    👤 Profile
+                </div>
+
+                <div class="option-description">
+                    Apni profile aur completed courses dekho
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- HISTORY PAGE -->
+<!-- ================================================= -->
+
+<div id="historyPage" class="page">
+
+    <div class="section">
+
+        <h1>🕘 My History</h1>
+
+        <div class="history-box">
+
+            <div id="historyList">
+                <!-- History JavaScript se ayegi -->
+            </div>
+
+            <button
+                class="delete-button"
+                onclick="deleteHistory()"
+            >
+                🗑️ Delete History
+            </button>
+
+            <button
+                class="back-button"
+                onclick="showPage('settingsPage')"
+            >
+                ← Back to Settings
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- PROFILE PAGE -->
+<!-- ================================================= -->
+
+<div id="profilePage" class="page">
+
+    <div class="section">
+
+        <div class="profile-card">
+
+            <div class="avatar">
+                👤
+            </div>
+
+
+            <div
+                id="profileName"
+                class="profile-name"
+            >
+                Anas
+            </div>
+
+
+            <div class="status">
+                🟢 Account Status: ACTIVE
+            </div>
+
+
+            <div class="status">
+                🟢 Online
+            </div>
+
+
+            <!-- CONGRATULATIONS -->
+
+            <div class="congratulations">
+
+                <h2>
+                    🎉 Congratulations!
+                </h2>
+
+                <p>
+                    Tumne successfully
+                    <b id="completedCount">3</b>
+                    courses complete kiye hain.
+                </p>
+
+            </div>
+
+
+            <!-- COMPLETED COURSES -->
+
+            <div class="info-box">
+
+                <h2>
+                    📚 Completed Courses
+                </h2>
+
+                <p>
+                    Neeche click karke apne completed
+                    courses dekho.
+                </p>
+
+                <button
+                    class="main-button"
+                    onclick="showCompletedCourses()"
+                >
+                    📚 View Completed Courses
+                </button>
+
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="showPage('settingsPage')"
+            >
+                ← Back to Settings
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- COMPLETED COURSES PAGE -->
+<!-- ================================================= -->
+
+<div id="completedPage" class="page">
+
+    <div class="section">
+
+        <h1>
+            📚 Completed Courses
+        </h1>
+
+        <div class="completed-list">
+
+            <div class="completed-item">
+                ✅ 🛒 Daraz Course
+            </div>
+
+            <div class="completed-item">
+                ✅ 📦 Amazon Course
+            </div>
+
+            <div class="completed-item">
+                ✅ 📱 Facebook Marketing Course
+            </div>
+
+        </div>
+
+
+        <button
+            class="back-button"
+            onclick="showProfile()"
+        >
+            ← Back to Profile
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
+
+/* ================= USER NAME ================= */
+
+let userName =
+    localStorage.getItem("userName") || "Anas";
+
+document.getElementById("homeName").innerText =
+    userName;
+
+document.getElementById("profileName").innerText =
+    userName;
+
+
+/* ================= PAGE SYSTEM ================= */
+
+function showPage(pageId) {
+
+    let pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+
+        page.classList.remove("active-page");
+
+    });
+
+    document
+        .getElementById(pageId)
+        .classList.add("active-page");
+
+    window.scrollTo(0, 0);
+}
+
+
+/* ================= PROFILE ================= */
+
+function showProfile() {
+
+    document.getElementById("profileName").innerText =
+        localStorage.getItem("userName") || "Anas";
+
+    showPage("profilePage");
+}
+
+
+/* ================= COMPLETED COURSES ================= */
+
+function showCompletedCourses() {
+
+    showPage("completedPage");
+
+}
+
+
+/* ================= COURSE OPEN ================= */
+
+function openCourse(courseName) {
+
+    /*
+       Course ko history mein save karo
+    */
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("courseHistory")
+        ) || [];
+
+
+    let time =
+        new Date().toLocaleString();
+
+
+    history.unshift({
+
+        name: courseName,
+
+        time: time
+
+    });
+
+
+    /*
+       Same course ki history
+       bahut zyada duplicate na ho
+    */
+
+    if (history.length > 20) {
+
+        history = history.slice(0, 20);
+
+    }
+
+
+    localStorage.setItem(
+        "courseHistory",
+        JSON.stringify(history)
+    );
+
+
+    alert(
+        "You opened: " + courseName
+    );
+}
+
+
+/* ================= SHOW HISTORY ================= */
+
+function showHistory() {
+
+    showPage("historyPage");
+
+    loadHistory();
+
+}
+
+
+/* ================= LOAD HISTORY ================= */
+
+function loadHistory() {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("courseHistory")
+        ) || [];
+
+
+    let list =
+        document.getElementById("historyList");
+
+
+    list.innerHTML = "";
+
+
+    if (history.length === 0) {
+
+        list.innerHTML =
+            '<div class="empty">🕘 History empty hai.</div>';
+
+        return;
+
+    }
+
+
+    history.forEach(function(item) {
+
+        let div =
+            document.createElement("div");
+
+        div.className =
+            "history-item";
+
+
+        div.innerHTML =
+
+            "👁️ <b>" +
+            item.name +
+            "</b>" +
+
+            '<div class="history-time">' +
+            item.time +
+            "</div>";
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* ================= DELETE HISTORY ================= */
+
+function deleteHistory() {
+
+    let confirmDelete =
+        confirm(
+            "Kya tum puri history delete karna chahte ho?"
+        );
+
+
+    if (confirmDelete) {
+
+        localStorage.removeItem("courseHistory");
+
+        loadHistory();
+
+    }
+
+}
+
+
+/* ================= COURSE SEARCH ================= */
+
+function searchCourses() {
+
+    let input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let container =
+        document.getElementById("courses");
+
+
+    let courses =
+        Array.from(
+            document.querySelectorAll(".course")
+        );
+
+
+    let foundCourses = [];
+
+    let hiddenCourses = [];
+
+
+    courses.forEach(function(course) {
+
+        let text =
+            course.innerText.toLowerCase();
+
+
+        if (
+            input === "" ||
+            text.includes(input)
+        ) {
+
+            foundCourses.push(course);
+
+        } else {
+
+            hiddenCourses.push(course);
+
+        }
+
+    });
+
+
+    /*
+       Matching courses upar
+    */
+
+    foundCourses.forEach(function(course) {
+
+        course.style.display = "block";
+
+        container.appendChild(course);
+
+    });
+
+
+    /*
+       Baqi courses hide
+    */
+
+    hiddenCourses.forEach(function(course) {
+
+        course.style.display = "none";
+
+    });
+
+
+    /*
+       No result
+    */
+
+    document.getElementById("noResult").style.display =
+
+        foundCourses.length === 0
+        ? "block"
+        : "none";
+
+}
+
+</script>
+
+</body>
+</html>

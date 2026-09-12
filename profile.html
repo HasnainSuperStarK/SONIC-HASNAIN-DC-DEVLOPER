@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #05080d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Background animation */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #00ff99;
+            opacity: 0.08;
+            filter: blur(100px);
+            border-radius: 50%;
+            animation: moveGlow 6s infinite alternate;
+        }
+
+        @keyframes moveGlow {
+            from {
+                transform: translate(-150px, -100px);
+            }
+
+            to {
+                transform: translate(150px, 100px);
+            }
+        }
+
+        .profile-card {
+            width: 90%;
+            max-width: 500px;
+            padding: 35px;
+            text-align: center;
+            background: rgba(10, 18, 25, 0.92);
+            border: 1px solid #00ff99;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 153, 0.25);
+            animation: cardShow 1s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes cardShow {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            margin: auto;
+            border-radius: 50%;
+            border: 3px solid #00ff99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 0 25px rgba(0, 255, 153, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                box-shadow: 0 0 40px rgba(0, 255, 153, 0.8);
+            }
+        }
+
+        h1 {
+            margin: 20px 0 5px;
+            color: #00ff99;
+        }
+
+        .username {
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            text-align: left;
+            background: #0b1219;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 3px solid #00ff99;
+        }
+
+        .info span {
+            color: #00ff99;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #00ff99;
+            border-radius: 8px;
+            background: transparent;
+            color: #00ff99;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ff99;
+            color: #05080d;
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .back {
+            margin-top: 18px;
+            display: inline-block;
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: #00ff99;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="profile-card">
+
+        <div class="avatar">
+            👤
+        </div>
+
+        <h1>MY PROFILE</h1>
+
+        <div class="username">
+            @username
+        </div>
+
+        <div class="info">
+            👤 Name:
+            <span>My Name</span>
+        </div>
+
+        <div class="info">
+            📧 Email:
+            <span>example@email.com</span>
+        </div>
+
+        <div class="info">
+            📚 Courses:
+            <span>5 Completed</span>
+        </div>
+
+        <div class="info">
+            🟢 Account:
+            <span>Active</span>
+        </div>
+
+        <div class="buttons">
+
+            <button onclick="editProfile()">
+                Edit Profile
+            </button>
+
+            <button onclick="openSettings()">
+                Settings
+            </button>
+
+        </div>
+
+        <a class="back" href="index.html">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function editProfile() {
+            alert("Edit Profile option clicked!");
+        }
+
+        function openSettings() {
+            window.location.href = "settings.html";
+        }
+
+    </script>
+
+</body>
+</html>
